@@ -1,21 +1,36 @@
 import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
 const Display = () => {
 
-    const [state, setstate] = useState(0)
-    
+
+    const dispatch = useDispatch()
+    const  data = useSelector((storedata)=>{
+        return storedata
+    })
+    console.log(data);
     
   return (
     <div>
-        <h2>{state}</h2>
+        <h2>{data}</h2>
         <button onClick={(()=>{
-            setstate(state + 1)
+            dispatch({
+                type: "increment"
+            })
+
+
+
+
         })}>increment</button>
         <button  onClick={(()=>{
-            setstate(state - 1)
+            dispatch({
+                type: "decrement"
+            })
         })}>decrement</button>
         <button  onClick={(()=>{
-            setstate( 0)
+            dispatch({
+                type: "reset"
+            })
         })}>reset</button>
     </div>
   )
